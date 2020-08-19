@@ -4,8 +4,8 @@
   "description": "Run tests for themes in WP.org directory",
   "main": "index.js",
   "scripts": {
-    "test:e2e:interactive": "PUPPETEER_HEADLESS=false wp-scripts test-e2e",
-    "test:e2e": "wp-scripts test-e2e",
+    "test:e2e:interactive": "PUPPETEER_HEADLESS=false wp-scripts test-e2e --config tests/e2e/jest.config.js",
+    "test:e2e": "wp-scripts test-e2e --config tests/e2e/jest.config.js",
     "pretest:lint": "wp-env run composer 'install --no-interaction'",
     "test:lint": "wp-env run composer 'run-script lint theme'",
     "test:unit": "wp-env run phpunit 'phpunit -c ./html/config/phpunit.xml.dist --verbose'",
@@ -16,8 +16,13 @@
   "author": "The WordPress Contributors",
   "license": "GPL-2.0-or-later",
   "dependencies": {
+    "@wordpress/e2e-test-utils": "^4.11.2",
     "@wordpress/env": "1.6.0",
-    "@wordpress/scripts": "12.1.1"
+    "@wordpress/jest-console": "^3.7.0",
+    "@wordpress/jest-puppeteer-axe": "^1.9.0",
+    "@wordpress/scripts": "12.1.1",
+    "jest": "^26.4.0",
+    "puppeteer": "^5.2.1"
   },
   "eslintConfig": {
     "extends": "plugin:@wordpress/eslint-plugin/recommended",

@@ -2,3 +2,4 @@ node_modules
 vendor
 themes/*
 plugins/*
+config/a11y-theme-unit-test-data.xml
