@@ -1,11 +1,15 @@
 # Theme Directory Tests
 
-Put theme in `themes` folder (this step will be automated, eventually). Update theme location in `.wp-env.json`.
+_Eventually these steps will be automated, but til then…_
 
-```
-npm install
-npm run wp-env start
-```
+1. Create folders `themes` and `plugins` in the project root.
+2. Put the theme you're testing in `themes`, and update the name in `.wp-env.json` (replace 'seedlet').
+3. Install dependencies, start the environment
+	```
+	composer install
+	npm install
+	npm run wp-env start
+	```
 
 PHPCS to catch other code issues
 
