@@ -2,27 +2,31 @@
 
 defined( 'WPINC' ) || die();
 
-class Test_Basic extends WP_UnitTestCase {
+class Test_ThemeCheck extends WP_UnitTestCase {
 	/**
-	 * Setup fixtures that are shared across all tests.
-	 */
-	public static function wpSetUpBeforeClass() {
-		// Create any posts etc here.
-	}
-
-	/**
-	 * Hello World.
+	 * Run theme checks.
 	 */
 	public function test_unit_tests_work() {
 		global $themechecks;
 		ob_start();
-		check_main( 'clubtravel' );
+		check_main( 'seedlet' );
 		ob_end_clean();
 
+		$errors = array();
 		foreach ( $themechecks as $check ) {
-			var_dump( $check );
+			$check_error = $check->getError();
+			if ( count( $check_error ) ) {
+				$errors = array_merge( $errors, (array) $check_error );
+			}
 		}
+		// Filter out only the required issues.
+		$errors = array_filter(
+			$check_error,
+			function( $error_str ) {
+				return 0 === strpos( 'REQUIRED:', strip_tags( $error_str ) );
+			}
+		);
 
-		$this->assertTrue( true );
+		$this->assertCount( 0, $errors );
 	}
 }
